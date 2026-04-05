@@ -1,0 +1,22 @@
+services:
+  # Database engine for the BeautyFlow ecosystem
+  bf-db:
+    image: postgres:15-alpine
+    container_name: bf-postgres-container
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password123}
+      POSTGRES_DB: ${DB_NAME:-beauty_flow_db}
+    ports:
+      - '5432:5432'
+    volumes:
+      - bf_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  bf_db_data:

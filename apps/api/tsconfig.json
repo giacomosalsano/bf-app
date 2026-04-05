@@ -1,0 +1,41 @@
+// This tsconfig.json defines how TypeScript compiles the code into JavaScript with Rules:
+{
+  "compilerOptions": {
+    //Modules and resolution:
+    "module": "nodenext", // generates ESM's (ECMASCript Module) compatible code
+    "moduleResolution": "nodenext",// it defines how resolve packages importings (ex: import { NestFactory } from '@nestjs/core';)
+    "resolvePackageJsonExports": true, // allows package.json to export modules
+
+    // Interoperability:
+    "esModuleInterop": true, // uses `import ... from '...'`
+    "allowSyntheticDefaultImports": true, // prevents code from being imported in a way that breaks the module system
+
+    // Decorators: allow uses decorators (ex: @Controller, @Injectable, etc.) and add metadata to the code
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+
+    // Declaration and Output: 
+    "declaration": true, // generates files like `.d.ts`with the compiled JavaScript code
+    "outDir": "./dist",// insert the compiled JavaScript code into the `dist` folder
+    "removeComments": true, // clean comments from the compiled JavaScript code
+
+    // Target and source Maps:
+    "target": "ES2023", // generates modern JavaScript code, compatilble with node 20+
+    "sourceMap": true, // generates `.map` to help with the debugging process
+
+   // Files organization: 
+    "baseUrl": "./", // allows to use `@` to import modules from the `src` folder
+    "isolatedModules": true, // each must be compiled separately
+    "incremental": true, // allows to compile the code incrementally, in subsequential builds
+
+    // Type Checking:
+    "skipLibCheck": true,  // ignores dependencies type definitions
+    "strict": true, // enables strict type-checking to catch more errors at compile time.
+    "strictNullChecks": true, // force checking `null` and `undefined` values
+    "strictBindCallApply": false, // force checking `bind`, `call` and `apply` methods
+    "strictPropertyInitialization": true, // ensures class properties are initialized in the constructor or marked optional, preventing undefined values.
+    "forceConsistentCasingInFileNames": true, // avoid case-sensitive errors
+    "noImplicitAny": false, // allows to use `any` type
+    "noFallthroughCasesInSwitch": false // force checking `switch` cases
+  }
+}
